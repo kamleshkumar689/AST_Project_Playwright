@@ -9,28 +9,44 @@ namespace API_Test_Playwright
     {
         PostClass postClass = new PostClass();
 
-        [Test]
-        public async Task APITestWithGet()
+        // [Test]
+        public async Task GetAllPostsTest()
         {
             await postClass.getPosts();
         }
 
         [Test]
-        public async Task APITestWithPost()
+        public async Task AddPostTest()
         {
-            await postClass.addPost("11", "Testing with playwright", 100);
+            /**
+            * It required 3 params
+            * userId, title and body
+            */
+            await postClass.addPost(
+                5,
+                "Testing with playwright",
+                "This is my first case of add post"
+            );
         }
 
         [Test]
-        public async Task APITestWithPut()
+        public async Task UpdatePostTest()
         {
-            await postClass.updatePost("11", "Testing new POM playwright", 95);
+            /**
+            * It required 3 params
+            * postId, title and body
+            */
+            await postClass.updatePost(
+                30,
+                "Testing new POM playwright",
+                "Testing new POM playwright"
+            );
         }
 
         [Test]
-        public async Task APITestWithDelete()
+        public async Task DeletePostTest()
         {
-            await postClass.deletePost("10");
+            await postClass.deletePost(30);
         }
 
     }

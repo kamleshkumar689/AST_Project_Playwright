@@ -43,14 +43,14 @@ namespace API_Test_Playwright.Pages
         /**
         * Add Post
         */
-        public async Task addPost(string id, string title, int marks)
+        public async Task addPost(int userId, string title, string body)
         {
-            string apiUrl = baseUrl + Endpoints.posts;
+            string apiUrl = baseUrl + Endpoints.addPost;
             var data = new
             {
-                id = id,
+                userId = userId,
                 title = title,
-                marks = marks
+                body = body
             };
             var jsonData = JsonConvert.SerializeObject(data);
 
@@ -83,14 +83,14 @@ namespace API_Test_Playwright.Pages
             }
         }
 
-        public async Task updatePost(string id, string title, int marks)
+        public async Task updatePost(int id, string title, string body)
         {
             string apiUrl = baseUrl + Endpoints.posts + '/' + id;
             var data = new
             {
                 id = id,
                 title = title,
-                marks = marks
+                body = body
             };
             var jsonData = JsonConvert.SerializeObject(data);
 
@@ -123,7 +123,7 @@ namespace API_Test_Playwright.Pages
             }
         }
 
-        public async Task deletePost(string id)
+        public async Task deletePost(int id)
         {
             string apiUrl = baseUrl + Endpoints.posts + '/' + id;
             var response = await page.APIRequest.DeleteAsync(apiUrl);

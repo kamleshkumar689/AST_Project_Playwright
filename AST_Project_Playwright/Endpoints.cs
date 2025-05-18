@@ -8,5 +8,6 @@ namespace API_Test_Playwright
     public class Endpoints
     {
         public static string posts = "posts";
+        public static string addPost = "posts/add";
     }
 }

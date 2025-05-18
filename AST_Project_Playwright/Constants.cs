@@ -7,6 +7,7 @@ namespace API_Test_Playwright
 {
     public class Constants
     {
-        public static string baseUrl = "http://localhost:3000/";
+        public static string baseUrl = "https://dummyjson.com/";
+        // public static string baseUrl = "http://localhost:3000/";
     }
 }
