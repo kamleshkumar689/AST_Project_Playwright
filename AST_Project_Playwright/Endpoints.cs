@@ -9,5 +9,8 @@ namespace API_Test_Playwright
     {
         public static string posts = "posts";
         public static string addPost = "posts/add";
+
+        public static string comments = "comments";
+        public static string addComment = "comments/add";
     }
 }
