@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace API_Test_Playwright.Pages
 {
@@ -29,7 +30,9 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
-            } else
+                Assert.Pass("Get Post's comments");
+            }
+            else
             {
                 throw new Exception("API failed");
             }
@@ -69,6 +72,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Add Comment");
             }
             else
             {
@@ -112,6 +116,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Update Comment");
             }
             else
             {
@@ -137,6 +142,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Delete Comment");
             }
             else
             {

@@ -1,10 +1,17 @@
 using System.Net.Mime;
+using NUnit.Framework;
 using API_Test_Playwright.Pages;
 using Microsoft.Playwright;
 using Newtonsoft.Json;
+using Allure.Commons;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
 
 namespace API_Test_Playwright
 {
+    [TestFixture]
+    [AllureNUnit]
+    [AllureSuite("API Tests")]
     public class Tests
     {
         PostClass postClass = new PostClass();
@@ -15,12 +22,18 @@ namespace API_Test_Playwright
 
         /********************* Posts and Comments Test Cases **********************/
         [Test]
+        [AllureDescription("Get All Posts.")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task GetAllPostsTest()
         {
             await postClass.getPosts();
         }
 
         [Test]
+        [AllureDescription("Add new post.")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task AddPostTest()
         {
             /**
@@ -35,6 +48,9 @@ namespace API_Test_Playwright
         }
 
         [Test]
+        [AllureDescription("Update Post")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task UpdatePostTest()
         {
             /**
@@ -49,30 +65,45 @@ namespace API_Test_Playwright
         }
 
         [Test]
+        [AllureDescription("Delete Post")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task DeletePostTest()
         {
             await postClass.deletePost(30);
         }
 
         [Test]
+        [AllureDescription("Get post's comments.")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task GetCommentsTest()
         {
             await commentClass.getComments();
         }
 
         [Test]
+        [AllureDescription("Add new comments.")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task AddCommentTest()
         {
             await commentClass.addComment("This makes all sense to me!", 3, 5);
         }
 
         [Test]
+        [AllureDescription("update comments")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task UpdateCommentTest()
         {
             await commentClass.updateComment(1, "This makes all sense to me!");
         }
 
         [Test]
+        [AllureDescription("delete comment")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task DeleteCommentTest()
         {
             await commentClass.deleteComment("1");
@@ -83,12 +114,18 @@ namespace API_Test_Playwright
         /********************* Users Test Cases **********************/
 
         [Test]
+        [AllureDescription("Get all users list")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task GetAllUsersTest()
         {
             await userClass.getUsers();
         }
 
         [Test]
+        [AllureDescription("Add new user")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task AddUserTest()
         {
             /**
@@ -103,6 +140,9 @@ namespace API_Test_Playwright
         }
 
         [Test]
+        [AllureDescription("Update user who's id is 2")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task UpdateUserTest()
         {
             /**
@@ -118,17 +158,27 @@ namespace API_Test_Playwright
         }
 
         [Test]
+        [AllureDescription("delete user who's id is 1")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task DeleteUserTest()
         {
             await userClass.deleteUser(1);
         }
 
         [Test]
+        [AllureDescription("Get user's posts")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task GetUserPostsByIdTest()
         {
             await userClass.getUserPostsById(2);
         }
 
+        [Test]
+        [AllureDescription("Gert user's todos")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task GetUserToDosByIdTest()
         {
             await userClass.getUserToDosById(2);
@@ -138,12 +188,18 @@ namespace API_Test_Playwright
         /********************* ToDo Test Cases **********************/
 
         [Test]
+        [AllureDescription("Get all todos")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task GetAllToDosTest()
         {
             await toDoClass.getToDos();
         }
 
         [Test]
+        [AllureDescription("Add new todo")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task AddToDoTest()
         {
             /**
@@ -158,6 +214,9 @@ namespace API_Test_Playwright
         }
 
         [Test]
+        [AllureDescription("Update todo")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task UpdateTodoTest()
         {
             /**
@@ -171,6 +230,9 @@ namespace API_Test_Playwright
         }
 
         [Test]
+        [AllureDescription("Delete todo by id 1")]
+        [AllureOwner("AST Project")]
+        [AllureTag("regression", "api", "playwright")]
         public async Task DeleteToDoTest()
         {
             await toDoClass.deleteToDo(1);

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Playwright;
+using NUnit.Framework;
 
 namespace API_Test_Playwright.Pages
 {
@@ -31,9 +32,11 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Get Posts");
             }
             else
             {
+                Assert.Fail("Get Posts");
                 throw new Exception("API failed at Get Posts");
             }
         }
@@ -74,6 +77,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Add Post");
             }
             else
             {
@@ -114,6 +118,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Update Post");
             }
             else
             {
@@ -136,6 +141,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Delete Post");
             }
             else
             {

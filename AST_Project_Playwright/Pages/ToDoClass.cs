@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Playwright;
+using NUnit.Framework;
 
 namespace API_Test_Playwright.Pages
 {
@@ -32,6 +33,8 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+
+                Assert.Pass("Get Todos");
             }
             else
             {
@@ -75,6 +78,8 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+
+                Assert.Pass("Add todo");
             }
             else
             {
@@ -114,6 +119,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Update Todo");
             }
             else
             {
@@ -136,6 +142,7 @@ namespace API_Test_Playwright.Pages
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
                 TestContext.WriteLine(responseText);
+                Assert.Pass("Delete Todo");
             }
             else
             {
