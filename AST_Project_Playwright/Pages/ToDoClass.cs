@@ -7,26 +7,27 @@ using Microsoft.Playwright;
 
 namespace API_Test_Playwright.Pages
 {
-    public class PostClass : BaseClass
+    public class ToDoClass : BaseClass
     {
         /**
         *   This will initialize playwright
         */
-        public PostClass()
+        public ToDoClass()
         {
             Task.Run(async () => await InitializePlaywright()).GetAwaiter().GetResult();
         }
+        
 
-        /**
-        * Get Posts
+           /**
+        * Get Users List
         */
-        public async Task getPosts()
+        public async Task getToDos()
         {
-            // await InitializePlaywright();
-            string apiUrl = baseUrl + Endpoints.posts;
+            string apiUrl = baseUrl + Endpoints.toDos;
             var response = await page.APIRequest.GetAsync(apiUrl);
             if (response.Status == 200)
             {
+
                 var responseData = await response.BodyAsync();
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
@@ -34,21 +35,21 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at Get Posts");
+                throw new Exception("API failed at Get ToDos");
             }
         }
 
         /**
-        * Add Post
-        */
-        public async Task addPost(int userId, string title, string body)
+       * Add User
+       */
+        public async Task addToDo(string todo, bool completedStatus, int userId)
         {
-            string apiUrl = baseUrl + Endpoints.addPost;
+            string apiUrl = baseUrl + Endpoints.addToDo;
             var data = new
             {
-                userId = userId,
-                title = title,
-                body = body
+                todo = todo,
+                completed = completedStatus,
+                userId = userId
             };
             var jsonData = JsonConvert.SerializeObject(data);
 
@@ -77,18 +78,17 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at Add Post");
+                throw new Exception("API failed at Add toDo");
             }
         }
 
-        public async Task updatePost(int id, string title, string body)
+
+        public async Task updateToDo(int id, bool completedStatus)
         {
-            string apiUrl = baseUrl + Endpoints.posts + '/' + id;
+            string apiUrl = baseUrl + Endpoints.toDos + "/" + id;
             var data = new
             {
-                id = id,
-                title = title,
-                body = body
+                completed = completedStatus,
             };
             var jsonData = JsonConvert.SerializeObject(data);
 
@@ -117,13 +117,13 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at update post");
+                throw new Exception("API failed at update todo");
             }
         }
 
-        public async Task deletePost(int id)
+        public async Task deleteToDo(int id)
         {
-            string apiUrl = baseUrl + Endpoints.posts + '/' + id;
+            string apiUrl = baseUrl + Endpoints.toDos + "/" + id;
             var response = await page.APIRequest.DeleteAsync(apiUrl);
             TestContext.WriteLine(response.Status);
 
@@ -139,8 +139,9 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at delete post");
+                throw new Exception("API failed at delete toDo");
             }
         }
+
     }
 }

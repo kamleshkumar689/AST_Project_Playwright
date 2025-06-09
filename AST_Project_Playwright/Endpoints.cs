@@ -12,5 +12,11 @@ namespace API_Test_Playwright
 
         public static string comments = "comments";
         public static string addComment = "comments/add";
+
+        public static string users = "users";
+        public static string addUser = "users/add";
+
+         public static string toDos = "todos";
+        public static string addToDo = "todos/add";
     }
 }

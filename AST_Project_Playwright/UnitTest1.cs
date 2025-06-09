@@ -9,7 +9,11 @@ namespace API_Test_Playwright
     {
         PostClass postClass = new PostClass();
         CommentClass commentClass = new CommentClass();
+        UserClass userClass = new UserClass();
+        ToDoClass toDoClass = new ToDoClass();
 
+
+        /********************* Posts and Comments Test Cases **********************/
         [Test]
         public async Task GetAllPostsTest()
         {
@@ -51,27 +55,125 @@ namespace API_Test_Playwright
         }
 
         [Test]
-        public async Task APICommentWithGet()
+        public async Task GetCommentsTest()
         {
             await commentClass.getComments();
         }
 
         [Test]
-        public async Task APICommentWithPost()
+        public async Task AddCommentTest()
         {
             await commentClass.addComment("This makes all sense to me!", 3, 5);
         }
 
         [Test]
-        public async Task APICommentWithPut()
+        public async Task UpdateCommentTest()
         {
             await commentClass.updateComment(1, "This makes all sense to me!");
         }
 
         [Test]
-        public async Task APICommentWithDelete()
+        public async Task DeleteCommentTest()
         {
             await commentClass.deleteComment("1");
+        }
+
+
+
+        /********************* Users Test Cases **********************/
+
+        [Test]
+        public async Task GetAllUsersTest()
+        {
+            await userClass.getUsers();
+        }
+
+        [Test]
+        public async Task AddUserTest()
+        {
+            /**
+            * It required 3 params
+            * first name, last name and age
+            */
+            await userClass.addUser(
+                "Alex",
+                "Kumar",
+                25
+            );
+        }
+
+        [Test]
+        public async Task UpdateUserTest()
+        {
+            /**
+            * It required 4 params
+            * userId, first name, last name and age
+            */
+            await userClass.updateUser(
+                2,
+                "Hellen",
+                "Keller",
+                27
+            );
+        }
+
+        [Test]
+        public async Task DeleteUserTest()
+        {
+            await userClass.deleteUser(1);
+        }
+
+        [Test]
+        public async Task GetUserPostsByIdTest()
+        {
+            await userClass.getUserPostsById(2);
+        }
+
+        public async Task GetUserToDosByIdTest()
+        {
+            await userClass.getUserToDosById(2);
+        }
+
+
+        /********************* ToDo Test Cases **********************/
+
+        [Test]
+        public async Task GetAllToDosTest()
+        {
+            await toDoClass.getToDos();
+        }
+
+        [Test]
+        public async Task AddToDoTest()
+        {
+            /**
+            * It required 3 params
+            * todo, completedStatus and userId
+            */
+            await toDoClass.addToDo(
+                "Submit AST project",
+                false,
+                5
+            );
+        }
+
+        [Test]
+        public async Task UpdateTodoTest()
+        {
+            /**
+            * It required 2 params
+            * id and status
+            */
+            await toDoClass.updateToDo(
+                2,
+                true
+            );
+        }
+
+        [Test]
+        public async Task DeleteToDoTest()
+        {
+            await toDoClass.deleteToDo(1);
         }
 
     }

@@ -7,26 +7,26 @@ using Microsoft.Playwright;
 
 namespace API_Test_Playwright.Pages
 {
-    public class PostClass : BaseClass
+    public class UserClass : BaseClass
     {
         /**
         *   This will initialize playwright
         */
-        public PostClass()
+        public UserClass()
         {
             Task.Run(async () => await InitializePlaywright()).GetAwaiter().GetResult();
         }
 
         /**
-        * Get Posts
+        * Get Users List
         */
-        public async Task getPosts()
+        public async Task getUsers()
         {
-            // await InitializePlaywright();
-            string apiUrl = baseUrl + Endpoints.posts;
+            string apiUrl = baseUrl + Endpoints.users;
             var response = await page.APIRequest.GetAsync(apiUrl);
             if (response.Status == 200)
             {
+
                 var responseData = await response.BodyAsync();
                 var responseText = System.Text.Encoding.UTF8.GetString(responseData);
                 TestContext.WriteLine("Response Data: ");
@@ -34,21 +34,21 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at Get Posts");
+                throw new Exception("API failed at Get Users");
             }
         }
 
         /**
-        * Add Post
-        */
-        public async Task addPost(int userId, string title, string body)
+       * Add User
+       */
+        public async Task addUser(string firstName, string lastName, int age)
         {
-            string apiUrl = baseUrl + Endpoints.addPost;
+            string apiUrl = baseUrl + Endpoints.addUser;
             var data = new
             {
-                userId = userId,
-                title = title,
-                body = body
+                firstName = firstName,
+                lastName = lastName,
+                age = age
             };
             var jsonData = JsonConvert.SerializeObject(data);
 
@@ -77,18 +77,19 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at Add Post");
+                throw new Exception("API failed at Add User");
             }
         }
 
-        public async Task updatePost(int id, string title, string body)
+
+        public async Task updateUser(int id, string firstName, string lastName, int age)
         {
-            string apiUrl = baseUrl + Endpoints.posts + '/' + id;
+            string apiUrl = baseUrl + Endpoints.users + '/' + id;
             var data = new
             {
-                id = id,
-                title = title,
-                body = body
+                firstName = firstName,
+                lastName = lastName,
+                age = age
             };
             var jsonData = JsonConvert.SerializeObject(data);
 
@@ -117,13 +118,13 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at update post");
+                throw new Exception("API failed at update user");
             }
         }
 
-        public async Task deletePost(int id)
+        public async Task deleteUser(int id)
         {
-            string apiUrl = baseUrl + Endpoints.posts + '/' + id;
+            string apiUrl = baseUrl + Endpoints.users + '/' + id;
             var response = await page.APIRequest.DeleteAsync(apiUrl);
             TestContext.WriteLine(response.Status);
 
@@ -139,7 +140,43 @@ namespace API_Test_Playwright.Pages
             }
             else
             {
-                throw new Exception("API failed at delete post");
+                throw new Exception("API failed at delete user");
+            }
+        }
+
+        public async Task getUserPostsById(int userId)
+        {
+            string apiUrl = baseUrl + Endpoints.users + "/" + userId + "/posts";
+            var response = await page.APIRequest.GetAsync(apiUrl);
+            if (response.Status == 200)
+            {
+
+                var responseData = await response.BodyAsync();
+                var responseText = System.Text.Encoding.UTF8.GetString(responseData);
+                TestContext.WriteLine("Response Data: ");
+                TestContext.WriteLine(responseText);
+            }
+            else
+            {
+                throw new Exception("API failed at Get User Posts");
+            }
+        }
+
+        public async Task getUserToDosById(int userId)
+        {
+            string apiUrl = baseUrl + Endpoints.users + "/" + userId + "/todos";
+            var response = await page.APIRequest.GetAsync(apiUrl);
+            if (response.Status == 200)
+            {
+
+                var responseData = await response.BodyAsync();
+                var responseText = System.Text.Encoding.UTF8.GetString(responseData);
+                TestContext.WriteLine("Response Data: ");
+                TestContext.WriteLine(responseText);
+            }
+            else
+            {
+                throw new Exception("API failed at Get User ToDos");
             }
         }
     }
